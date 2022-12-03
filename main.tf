@@ -19,11 +19,11 @@ provider "aws" {
 }
 
 # aws EC2 instance creation
-resource "aws_instance" "tf_gen_server1" {
+resource "aws_instance" "tf_gen_server2" {
   ami           = "ami-08e637cea2f053dfa"
   instance_type = "t2.micro"
 
   tags = {
-    Name = "TfGeneratedEc2instance1"
+    Name = "TfGeneratedEc2instance2"
   }
 }
