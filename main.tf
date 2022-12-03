@@ -10,8 +10,9 @@ terraform {
 }
 
 provider "aws" {
-  profile = "default"
   region  = "us-west-2"
+  shared_credentials_files  = "$HOME/.aws/credentials"
+  profile                   = "default"
 }
 
 # aws EC2 instance creation
