@@ -11,6 +11,7 @@ terraform {
 
 provider "aws" {
   region  = "us-west-2"
+  shared_config_files = ["$HOME/.aws/conf"]
   shared_credentials_files  = ["$HOME/.aws/credentials"]
   profile                   = "customprofile"
 }
