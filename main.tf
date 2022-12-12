@@ -13,15 +13,17 @@ resource "aws_instance" "tf_gen_server3" {
   }
 }
 
-# resource "aws_s3_bucket" "my_s3_bucket"{
-#   # for_each = {
-#   #   "first_bucket"  = "bucket_one"
-#   #   "second_bucket" = "bucket_two" 
-#   # }
-#   for_each = toset(["bucket_one", "bucket_two"])
-#   bucket = each.value
-#   acl = private
-# }
+resource "aws_s3_bucket" "my_s3_bucket"{
+  # for_each object notation
+  # for_each = {
+  #   "first_bucket"  = "bucket_one"
+  #   "second_bucket" = "bucket_two" 
+  # }
+  # for_each set notation
+  for_each = toset(["bucket_one", "bucket_two"])
+  bucket = each.value
+  acl = public
+}
 
 # resource "aws_s3_bucket_object" "my_s3_bucket_obj"{
 #   for_each = toset(["obj_one", "obj_two"])
