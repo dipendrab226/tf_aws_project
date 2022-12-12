@@ -9,7 +9,7 @@ resource "aws_instance" "tf_gen_server3" {
 
   tags = {
     # count index begins from 0
-    Name = var.tag_name + "_${count.index}"
+    Name = "${var.tag_name}_${count.index}"
   }
 }
 
