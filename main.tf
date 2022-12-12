@@ -27,8 +27,8 @@ resource "aws_s3_bucket" "my_s3_bucket"{
 }
 
 resource "aws_s3_bucket_acl" "my_s3_bucket_acl" {
-  for_each = toset(aws_s3_bucket.my_s3_bucket.id)
-  bucket = each.value
+  for_each = toset(aws_s3_bucket.my_s3_bucket)
+  bucket = each.value.id
   acl    = "private"
 }
 
