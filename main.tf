@@ -22,7 +22,14 @@ resource "aws_s3_bucket" "my_s3_bucket"{
   # for_each set notation
   for_each = toset(["bucket_one", "bucket_two"])
   bucket = each.value
-  acl = "public-read"
+  # acl = "public-read"
+  # adding acl on s3 bucket resource is deprecated
+}
+
+resource "aws_s3_bucket_acl" "my_s3_bucket_acl" {
+  for_each = toset(aws_s3_bucket.my_s3_bucket)
+  bucket = each.id
+  acl    = "private"
 }
 
 # resource "aws_s3_bucket_object" "my_s3_bucket_obj"{
