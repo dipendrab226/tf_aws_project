@@ -1,29 +1,30 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      #version = "~> 3.27"
-    }
-  }
-
-  required_version = ">= 1.1.0"
-}
-
-provider "aws" {
-  region  = "us-east-1"
-#   access_key = "AKIAXLUH3BNI4ILTBTUR"
-#   secret_key = "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"
-  shared_config_files       = ["$HOME/.aws/conf"]
-  shared_credentials_files  = ["$HOME/.aws/credentials"]
-  profile                   = "customprofile"
-}
-
 # aws EC2 instance creation
-resource "aws_instance" "tf_gen_server2" {
+resource "aws_instance" "tf_gen_server3" {
+  # a given resource/module cannot use both count and for_each
+  # type.name refers to the resource block
+  # type.name[index] refers to the individual instance
+  count         = 2
   ami           = "ami-08e637cea2f053dfa"
   instance_type = "t2.micro"
 
   tags = {
-    Name = "TfGeneratedEc2instance2"
+    # count index begins from 0
+    Name = var.tag_name + "_${count.index}"
   }
 }
+
+# resource "aws_s3_bucket" "my_s3_bucket"{
+#   # for_each = {
+#   #   "first_bucket"  = "bucket_one"
+#   #   "second_bucket" = "bucket_two" 
+#   # }
+#   for_each = toset(["bucket_one", "bucket_two"])
+#   bucket = each.value
+#   acl = private
+# }
+
+# resource "aws_s3_bucket_object" "my_s3_bucket_obj"{
+#   for_each = toset(["obj_one", "obj_two"])
+#   bucket = aws_s3_bucket.my_s3_bucket.id
+#   name = each.value
+# }
