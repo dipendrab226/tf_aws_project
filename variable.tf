@@ -10,6 +10,6 @@ variable "region"{
 }
 variable "accountId"{
     description = "This is account Id"
-    type = "string"
+    type = string
     default = ""
 }
