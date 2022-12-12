@@ -20,14 +20,14 @@ resource "aws_s3_bucket" "my_s3_bucket"{
   #   "second_bucket" = "bucket_two" 
   # }
   # for_each set notation
-  for_each = toset(["bucket_one", "bucket_two"])
+  for_each = toset(["db_bucket_one_${var.accountId}_${var.region}", "db_bucket_two_${var.accountId}_${var.region}"])
   bucket = each.value
   # acl = "public-read"
   # adding acl on s3 bucket resource is deprecated
 }
 
 resource "aws_s3_bucket_acl" "my_s3_bucket_acl" {
-  for_each = toset(["bucket_one", "bucket_two"])
+  for_each = toset(["db_bucket_one_${var.accountId}_${var.region}", "db_bucket_two_${var.accountId}_${var.region}"])
   bucket = each.value
   acl    = "private"
 }

@@ -8,3 +8,8 @@ variable "region"{
     type = string
     default = ""
 }
+variable "accountId"{
+    description = "This is account Id"
+    type = "string"
+    default = ""
+}
