@@ -22,7 +22,7 @@ resource "aws_s3_bucket" "my_s3_bucket"{
   # for_each set notation
   for_each = toset(["bucket_one", "bucket_two"])
   bucket = each.value
-  acl = "public"
+  acl = "public-read"
 }
 
 # resource "aws_s3_bucket_object" "my_s3_bucket_obj"{
