@@ -3,3 +3,8 @@ variable "tag_name"{
     type = string
     default = ""
 }
+variable "region"{
+    description = "Name of the AWS Region"
+    type = string
+    default = ""
+}
